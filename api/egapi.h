@@ -113,7 +113,10 @@ struct MrfEgRegs {
   u32  RxInitPS;                            /* 0088: Initial value for RF Recovery DCM phase */
   u32  Resv0x008Cto0x0100[(0x100-0x08C)/4]; /* 008C-00FF: Reserved */
   u32  EventTrigger[EVG_MAX_TRIGGERS];      /* 0100-013F: Event Trigger Registers */
-  u32  Resv0x0140to0x017F[(0x180-0x140)/4]; /* 0140-017F: Reserved */
+  u32  SeqRamStartCnt[EVG_MAX_SEQRAMS];     /* 0140-014F: Sequence Start Counters */
+  u32  SeqRamEndCnt[EVG_MAX_SEQRAMS];       /* 0150-015F: Sequence End Counters */
+  u32  SeqRamRepeat[EVG_MAX_SEQRAMS];       /* 0160-016F: Sequence repetition settings */
+  u32  Resv0x0140to0x017F[(0x180-0x170)/4]; /* 0170-017F: Reserved */
   struct MXCStruct MXC[EVG_MAX_MXCS];       /* 0180-01FF: Multiplexed Counter Prescalers */
   u32  Resv0x01C0to0x03FC[(0x400-0x200)/4]; /* 0200-03FF: Reserved */
   u16  FPOutMap[EVG_MAX_FPOUT_MAP];         /* 0400-041F: Front panel output mapping */
@@ -337,6 +340,7 @@ unsigned int EvgGetSeqRamTimestamp(volatile struct MrfEgRegs *pEg, int ram, int 
 int EvgGetSeqRamEvent(volatile struct MrfEgRegs *pEg, int ram, int pos);
 void EvgSeqRamDump(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSeqRamControl(volatile struct MrfEgRegs *pEg, int ram, int enable, int single, int recycle, int reset, int trigsel, int mask);
+int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, int count);
 int EvgSeqRamSWTrig(volatile struct MrfEgRegs *pEg, int ram);
 void EvgSeqRamStatus(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSetUnivinMap(volatile struct MrfEgRegs *pEg, int univ, int trig, int dbus, int irq, int seqtrig, int mask);

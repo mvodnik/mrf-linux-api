@@ -919,7 +919,24 @@ int EvgSeqRamControl(volatile struct MrfEgRegs *pEg, int ram, int enable, int si
 
   return 0;
 }
-					  
+
+/**
+Set number of sequence repetitions for a sequence RAM.
+
+@param pEg Pointer to MrfEgRegs structure
+@param ram RAM number
+@param count Desired number of sequence repetitions. Set to 0 for infinite repetitions.
+ */
+int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, int count)
+{
+  if (ram < 0 || ram >= EVG_SEQRAMS)
+    return -1;
+
+  pEg->SeqRamRepeat[ram] = be32_to_cpu(count);
+  
+  return 0;
+}
+
 /**
 Software trigger sequence RAM.
 

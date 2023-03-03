@@ -16,7 +16,7 @@ all: $(TARGETS) $(APIOBJECTS) doc
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -rf *.o *~ $(TARGETS)
+	rm -rf *.o *~ $(TARGETS) html latex
 
 doc:
 	doxygen
