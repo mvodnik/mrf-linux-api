@@ -5,7 +5,7 @@ TARGETS := mmap_test simple evrsetup evan_monitor evr_fifo_monitor
 
 APIOBJECTS := egapi.o erapi.o fctapi.o fracdiv.o sfpdiag.o
 
-all: $(TARGETS) $(APIOBJECTS) doc
+all: $(TARGETS) $(APIOBJECTS)
 
 % : %.c
 

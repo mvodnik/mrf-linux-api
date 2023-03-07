@@ -78,7 +78,7 @@ EvrSetCMLMode \
 EvrSetCMLPhaseOffset \
 EvrSetGunTxInhibitOverride
 
-all: $(WRAPPERS) doc
+all: $(WRAPPERS)
 
 wrappers: $(WRAPPERS)
 
