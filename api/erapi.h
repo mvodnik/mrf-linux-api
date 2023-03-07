@@ -190,7 +190,8 @@ struct MrfErRegs {
   struct MapRamItemStruct MapRam[EVR_MAPRAMS][EVR_MAX_EVENT_CODE+1];
                                             /* 4000-4FFF: Map RAM 1 */
                                             /* 5000-5FFF: Map RAM 2 */
-  u32  Resv0x6000[(0x8000-0x6000)/4];       /* 6000-7FFF: Reserved */
+  u32  EventCounters[EVR_MAX_EVENT_CODE+1]; /* 6000-6400: 32-bit counter for each event */
+  u32  Resv0x6400[(0x8000-0x6400)/4];       /* 6400-7FFF: Reserved */
   u32  ConfigROM[(0x8100-0x8000)/4];        /* 8000-80FF: Reserved */
   u32  ConfigRAM[(0x8200-0x8100)/4];        /* 8100-81FF: Reserved */
   u32  SFPEEPROM[(0x8300-0x8200)/4];        /* 8200-82FF: Reserved */
@@ -208,8 +209,7 @@ struct MrfErRegs {
   u32  Resv0xA000[(0xC000-0xA800)/4];       /* A800-BFFF: Reserved */
   struct SeqRamItemStruct SeqRam[EVR_SEQRAMS][EVR_MAX_SEQRAMEV];
                                             /* C000-FFFF: Sequence RAM */ 
-  u32  EventCounters[EVR_MAX_EVENT_CODE+1]; /* 10000-10400: 32-bit counter for each event */
-  u32  Resv0x10400[(0x20000-0x10400)/4];    /* 10400-1FFFF: Reserved */
+  u32  Resv0x10000[(0x20000-0x10000)/4];    /* 10000-1FFFF: Reserved */
   char GTXMem[EVR_GTXS][0x4000];            /* 20000-3FFFF: GTX Pattern Memory */ 
 };
 
