@@ -989,17 +989,12 @@ void EvgSeqRamStatus(volatile struct MrfEgRegs *pEg, int ram)
 @param ram RAM number
 @return 32-bit value of sequence start counter
  */
-u32 EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram)
+unsigned int EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram)
 {
-  int counter;
-
   if (ram < 0 || ram >= EVG_SEQRAMS)
-    return 0;
-  
-  counter = be32_to_cpu(pEg->SeqRamStartCnt[ram]);
-  DEBUG_PRINTF("Start count: %d", counter);
+    return -1;
 
-  return counter;
+  return be32_to_cpu(pEg->SeqRamStartCnt[ram]);
 }
 
 /**
@@ -1009,17 +1004,12 @@ u32 EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram)
 @param ram RAM number
 @return 32-bit value of sequence end counter
  */
-u32 EvgSeqRamGetEndCnt(volatile struct MrfEgRegs *pEg, int ram)
+unsigned int EvgSeqRamGetEndCnt(volatile struct MrfEgRegs *pEg, int ram)
 {
-  int counter;
-
   if (ram < 0 || ram >= EVG_SEQRAMS)
-    return 0;
-  
-  counter = be32_to_cpu(pEg->SeqRamEndCnt[ram]);
-  DEBUG_PRINTF("End count: %d", counter);
+    return -1;
 
-  return counter;
+  return be32_to_cpu(pEg->SeqRamEndCnt[ram]);
 }
 
 /**

@@ -527,4 +527,4 @@ int EvrGetDCDelay(volatile struct MrfErRegs *pEr);
 int EvrGetDCIntDelay(volatile struct MrfErRegs *pEr);
 int EvrGetDCPathValue(volatile struct MrfErRegs *pEr);
 int EvrRTMUnivSetDelay(volatile struct MrfErRegs *pEr, int dlymod, int dly);
-u32 EvrGetEventCount(volatile struct MrfErRegs *pEr, int code);
+unsigned int EvrGetEventCount(volatile struct MrfErRegs *pEr, int code);

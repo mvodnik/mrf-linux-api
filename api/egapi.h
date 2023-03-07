@@ -343,8 +343,8 @@ int EvgSeqRamControl(volatile struct MrfEgRegs *pEg, int ram, int enable, int si
 int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, int count);
 int EvgSeqRamSWTrig(volatile struct MrfEgRegs *pEg, int ram);
 void EvgSeqRamStatus(volatile struct MrfEgRegs *pEg, int ram);
-u32 EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram);
-u32 EvgSeqRamGetEndCnt(volatile struct MrfEgRegs *pEg, int ram);
+unsigned int EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram);
+unsigned int EvgSeqRamGetEndCnt(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSetUnivinMap(volatile struct MrfEgRegs *pEg, int univ, int trig, int dbus, int irq, int seqtrig, int mask);
 int EvgGetUnivinMapTrigger(volatile struct MrfEgRegs *pEg, int univ);
 int EvgGetUnivinMapDBus(volatile struct MrfEgRegs *pEg, int univ);

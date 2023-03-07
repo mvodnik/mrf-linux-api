@@ -2974,10 +2974,10 @@ Reads an event counter for a specified event code.
 @param code Event code
 @return 32-bit value of the event counter
  */
-u32 EvrGetEventCount(volatile struct MrfErRegs *pEr, int code)
+unsigned int EvrGetEventCount(volatile struct MrfErRegs *pEr, int code)
 {
   if (code < 0 || code > EVR_MAX_EVENT_CODE)
-    return 0;
+    return -1;
 
   return be32_to_cpu(pEr->EventCounters[code]);
 }
