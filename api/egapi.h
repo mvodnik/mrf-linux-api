@@ -340,7 +340,8 @@ unsigned int EvgGetSeqRamTimestamp(volatile struct MrfEgRegs *pEg, int ram, int 
 int EvgGetSeqRamEvent(volatile struct MrfEgRegs *pEg, int ram, int pos);
 void EvgSeqRamDump(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSeqRamControl(volatile struct MrfEgRegs *pEg, int ram, int enable, int single, int recycle, int reset, int trigsel, int mask);
-int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, int count);
+int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, unsigned int count);
+unsigned int EvgSeqRamGetRepeat(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSeqRamSWTrig(volatile struct MrfEgRegs *pEg, int ram);
 void EvgSeqRamStatus(volatile struct MrfEgRegs *pEg, int ram);
 unsigned int EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram);
