@@ -2966,3 +2966,18 @@ int EvrRTMUnivSetDelay(volatile struct MrfErRegs *pEr, int dlymod, int dly)
   else
     return -1;
 }
+
+/**
+Reads an event counter for a specified event code.
+
+@param pEr Pointer to MrfErRegs structure
+@param code Event code
+@return 32-bit value of the event counter
+ */
+u32 EvrGetEventCount(volatile struct MrfErRegs *pEr, int code)
+{
+  if (code < 0 || code > EVR_MAX_EVENT_CODE)
+    return 0;
+
+  return be32_to_cpu(pEr->EventCounters[code]);
+}

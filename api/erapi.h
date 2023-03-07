@@ -208,7 +208,8 @@ struct MrfErRegs {
   u32  Resv0xA000[(0xC000-0xA800)/4];       /* A800-BFFF: Reserved */
   struct SeqRamItemStruct SeqRam[EVR_SEQRAMS][EVR_MAX_SEQRAMEV];
                                             /* C000-FFFF: Sequence RAM */ 
-  u32  Resv0x10000[(0x20000-0x10000)/4];    /* 10000-1FFFF: Reserved */
+  u32  EventCounters[EVR_MAX_EVENT_CODE+1]; /* 10000-10400: 32-bit counter for each event */
+  u32  Resv0x10400[(0x20000-0x10400)/4];    /* 10400-1FFFF: Reserved */
   char GTXMem[EVR_GTXS][0x4000];            /* 20000-3FFFF: GTX Pattern Memory */ 
 };
 
@@ -526,3 +527,4 @@ int EvrGetDCDelay(volatile struct MrfErRegs *pEr);
 int EvrGetDCIntDelay(volatile struct MrfErRegs *pEr);
 int EvrGetDCPathValue(volatile struct MrfErRegs *pEr);
 int EvrRTMUnivSetDelay(volatile struct MrfErRegs *pEr, int dlymod, int dly);
+u32 EvrGetEventCount(volatile struct MrfErRegs *pEr, int code);
