@@ -1,8 +1,8 @@
 /**
 @file
-EvFWVersion [ <evr/evg-device> ] - Display EVG/EVM/EVR Firmware Version information
+EvgFWVersion [ <evg-device> ] - Display EVG Firmware Version information
 
-@param <evr/evg-device> Device name of EVG/EVM/EVR (defaults to /dev/ega3) if left blank.
+@param <evg-device> Device name of EVG (defaults to /dev/ega3) if left blank.
 */
 
 #include <stdint.h>
