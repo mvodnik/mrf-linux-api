@@ -2981,3 +2981,18 @@ unsigned int EvrGetEventCount(volatile struct MrfErRegs *pEr, int code)
 
   return be32_to_cpu(pEr->EventCounters[code]);
 }
+
+/**
+Reads pulse counter for a specified Pulse Generator.
+
+@param pEr Pointer to MrfErRegs structure
+@param pulse Pulse Generator index
+@return 32-bit value of the pulse counter
+ */
+unsigned int EvrGetPulseCount(volatile struct MrfErRegs *pEr, int pulse)
+{
+  if (pulse < 0 || pulse > EVR_MAX_PULSES-1)
+    return -1;
+
+  return be32_to_cpu(pEr->PulseCounters[pulse]);
+}

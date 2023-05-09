@@ -81,7 +81,8 @@ EvgSeqRamSetRepeat \
 EvgSeqRamGetRepeat \
 EvgSeqRamGetStartCnt \
 EvgSeqRamGetEndCnt \
-EvrGetEventCount
+EvrGetEventCount \
+EvrGetPulseCount
 
 all: $(WRAPPERS)
 
