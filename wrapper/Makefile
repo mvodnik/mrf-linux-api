@@ -60,10 +60,13 @@ EvrDumpDC \
 EvrDumpLog \
 EvrDumpMapRam \
 EvrDumpPulses \
+EvrDumpStatus \
 EvrDumpTBOutMap \
 EvrDumpUnivOutMap \
 EvrEnable \
 EvrEnableEventForwarding \
+EvrGetClockControl \
+EvrGetFracDiv \
 EvrGetSecondsCounter \
 EvrGetSecondsLatch \
 EvrGetTimestampCounter \

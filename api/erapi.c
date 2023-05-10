@@ -2638,6 +2638,17 @@ int EvrSetIntClkMode(volatile struct MrfErRegs *pEr, int enable)
 }
 
 /**
+Read the Clock Control Register
+
+@param pEr Pointer to MrfErRegs structure
+@return 32-bit value of the Clock Control register
+*/
+int EvrGetClockControl(volatile struct MrfErRegs *pEr)
+{
+  return (be32_to_cpu(pEr->ClockControl));
+}
+
+/**
 Set target delay. In delay compensation mode the target delay is the total system delay, in non-DC mode the target delay is the depth of the delay compensation FIFO.
 
 @param pEr Pointer to MrfErRegs structure

@@ -510,6 +510,7 @@ int EvrSetCMLPhaseOffset(volatile struct MrfErRegs *pEr, int channel, int offset
 int EvrGetGunTxInhibitOverride(volatile struct MrfErRegs *pEr);
 int EvrSetGunTxInhibitOverride(volatile struct MrfErRegs *pEr, int override);
 int EvrSetIntClkMode(volatile struct MrfErRegs *pEr, int enable);
+int EvrGetClockControl(volatile struct MrfErRegs *pEr); // TODO: Change this into a dump function
 int EvrSetTargetDelay(volatile struct MrfErRegs *pEr, int delay);
 int EvrGetTargetDelay(volatile struct MrfErRegs *pEr);
 int EvrSWEventEnable(volatile struct MrfErRegs *pEr, int state);

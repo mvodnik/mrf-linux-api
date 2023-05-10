@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   int              i;
   char             c;
 
-  if (argc < 1)
+  if (argc < 2)
     {
       printf("Usage: %s /dev/ega3\n", argv[0]);
       printf("Assuming: /dev/ega3\n");
