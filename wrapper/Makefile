@@ -53,6 +53,7 @@ EvrClearFIFO \
 EvrClearLog \
 EvrClearPulseMap \
 EvrDCEnable \
+EvrDumpClockControl \
 EvrDumpBPOutMap \
 EvrDumpFIFO \
 EvrDumpFPOutMap \
@@ -65,7 +66,6 @@ EvrDumpTBOutMap \
 EvrDumpUnivOutMap \
 EvrEnable \
 EvrEnableEventForwarding \
-EvrGetClockControl \
 EvrGetFracDiv \
 EvrGetSecondsCounter \
 EvrGetSecondsLatch \
