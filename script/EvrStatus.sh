@@ -1,8 +1,7 @@
 #!/bin/bash
 
+source definitions.sh
 FREQ_CMD=/opt/epics7/modules/mrfioc2/bin/linux-x86_64/FracSynthAnalyze
-WRAP_DIR=../wrapper
-VALID_EVRS="[c]"
 
 if [[ $# -ne 1 ]]; then
 	echo "Usage: $0 <evr>"
@@ -38,25 +37,32 @@ echo ""
 echo "============================================================================================"
 echo "Event Mapping RAMs:"
 echo "============================================================================================"
-# TODO: Determine which RAM is currently active and only display that one
-echo "RAM 0"
+if [ "$($WRAP_DIR/EvrDumpStatus /dev/erc3 | grep MAPSEL)" ]; then
+	RAM0=""
+	RAM1="(selected)"
+else
+	RAM0="(selected)"
+	RAM1=""
+fi
+
+echo "RAM 0 $RAM0"
 $WRAP_DIR/EvrDumpMapRam $EVR 0
 
 echo ""
-echo "RAM 1"
+echo "RAM 1 $RAM1"
 $WRAP_DIR/EvrDumpMapRam $EVR 1
 
 echo ""
 echo "============================================================================================"
-echo "Sequence RAMs:"
+echo "Sequence RAM:"
 echo "============================================================================================"
-# TODO: Determine which RAM is currently active and only display that one
-echo "RAM 0"
+# echo "RAM 0"
+$WRAP_DIR/EvrSeqRamStatus $EVR 0
 $WRAP_DIR/EvrSeqRamDump $EVR 0
 
-echo ""
-echo "RAM 1"
-$WRAP_DIR/EvrSeqRamDump $EVR 1
+#echo ""
+#echo "RAM 1"
+#$WRAP_DIR/EvrSeqRamDump $EVR 1
 
 echo ""
 echo "============================================================================================"
@@ -64,4 +70,9 @@ echo "Pulse Generators:"
 echo "============================================================================================"
 $WRAP_DIR/EvrDumpPulses $EVR
 
-
+echo ""
+echo "============================================================================================"
+echo "Output Mapping:"
+echo "============================================================================================"
+$WRAP_DIR/EvrDumpFPOutMap $EVR
+$WRAP_DIR/EvrDumpUnivOutMap $EVR
