@@ -77,6 +77,7 @@ EvrOutputEnable \
 EvrSendSWEvent \
 EvrSeqRamControl \
 EvrSeqRamDump \
+EvrSeqRamStatus \
 EvrSeqRamSWTrig \
 EvrSetBackDBus \
 EvrSetBackEvent \

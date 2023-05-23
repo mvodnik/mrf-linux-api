@@ -19,13 +19,13 @@ EvrSeqRamStatus <evr-device> <ram> - Display EVR Sequence RAM status.
 /** @private */
 int main(int argc, char *argv[])
 {
-  struct MrfErRers *pEr;
+  struct MrfErRegs *pEr;
   int              fdEr;
   int              i;
 
-  if (argc < 1)
+  if (argc < 2)
     {
-      printf("Usage: %s /dev/era3 <trig>\n", argv[0]);
+      printf("Usage: %s /dev/era3 <ram>\n", argv[0]);
       printf("Assuming: /dev/era3\n");
       argv[1] = "/dev/era3";
     }
