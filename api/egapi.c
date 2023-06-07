@@ -94,7 +94,7 @@ int EvgOpen(struct MrfEgRegs **pEg, char *device_name)
 
 #ifdef __linux__
 /**
-Close EVG device opened with EvrOpen.
+Close EVG device opened with EvgOpen.
 @param fd File descriptor of EVG device returned by EvgOpen.
 @return Returns 0 on successful completion.
 */
@@ -772,7 +772,7 @@ int EvgSetSeqRamEvent(volatile struct MrfEgRegs *pEg, int ram, int pos, unsigned
 /**
 Get sequence RAM event timestamp.
 
-@param pEr Pointer to MrfEgRegs structure
+@param pEg Pointer to MrfEgRegs structure
 @param ram RAM number
 @param pos Sequence RAM position (0 to 2047)
 @return 32 bit timestamp of event at RAM position pos
@@ -956,7 +956,7 @@ unsigned int EvgSeqRamGetRepeat(volatile struct MrfEgRegs *pEg, int ram)
 Software trigger sequence RAM.
 
 @param pEg Pointer to MrfEgRegs structure
-@param ram RAM number, 0 for EVR
+@param ram RAM number, 0 for EVG
 */
 int EvgSeqRamSWTrig(volatile struct MrfEgRegs *pEg, int ram)
 {
@@ -2074,7 +2074,7 @@ int EvgGetFormFactor(volatile struct MrfEgRegs *pEg)
 Assign user space interrupt handler for EVG interrupts.
 
 @param pEg Pointer to MrfEgRegs structure
-@param fd File descriptor of EVR device
+@param fd File descriptor of EVG device
 @param handler Pointer to user space interrupt handler
 */
 void EvgIrqAssignHandler(volatile struct MrfEgRegs *pEg, int fd,
@@ -2154,7 +2154,7 @@ int EvgIrqEnable(volatile struct MrfEgRegs *pEg, int mask)
 }
 
 /**
-Get interrupt flags for EVR.
+Get interrupt flags for EVG.
 
 @param pEg Pointer to MrfEgRegs structure
 @return Interrupt flags
@@ -2241,4 +2241,103 @@ Get seconds value from timestamp generator.
 int EvgTimestampGet(volatile struct MrfEgRegs *pEg)
 {
   return be32_to_cpu(pEg->TimestampValue);
+}
+
+/**
+Dump the contents of the Clock Control Register
+
+@param pEg Pointer to MrfEgRegs structure
+*/
+void EvgDumpClockControl(volatile struct MrfEgRegs *pEg)
+{
+  int result = be32_to_cpu(pEg->ClockControl);
+  DEBUG_PRINTF("Clock Control %08x ", result);
+
+  if (result & (1 << C_EVG_CLKCTRL_PLLL))
+    DEBUG_PRINTF("PLLLOCK ");
+
+  switch ((result >> C_EVG_CLKCTRL_BWSEL) & 0x7)
+  {
+  case 0:
+    DEBUG_PRINTF("HM ");
+    break;
+  case 1:
+    DEBUG_PRINTF("HL ");
+    break;
+  case 2:
+    DEBUG_PRINTF("MH ");
+    break;
+  case 3:
+    DEBUG_PRINTF("MM ");
+    break;
+  case 4:
+    DEBUG_PRINTF("ML ");
+    break;
+  default: break;
+  }
+
+  switch ((result >> C_EVG_CLKCTRL_RFSEL) & 0x7)
+  {
+  case 0:
+    DEBUG_PRINTF("INTERNAL ");
+    break;
+  case 1:
+    DEBUG_PRINTF("EXTERNAL ");
+    break;
+  case 2:
+    DEBUG_PRINTF("PXIE100 ");
+    break;
+  case 4:
+    DEBUG_PRINTF("REC-FANOUT ");
+    break;
+  case 5:
+    DEBUG_PRINTF("COMB-FANOUT ");
+    break;
+  case 6:
+    DEBUG_PRINTF("PXIE10 ");
+    break;
+  case 7:
+    DEBUG_PRINTF("REC-HALVED ");
+    break;
+  default: break;
+  }
+
+  if (result & (1 << C_EVG_CLKCTRL_PHTOGG))
+    DEBUG_PRINTF("PHTOGG ");
+
+  DEBUG_PRINTF("\n");
+
+  uint8_t rfdiv = (result >> C_EVG_CLKCTRL_DIV_LOW) & 0x7 + 1;
+  if (rfdiv == 13)
+    DEBUG_PRINTF("RFDIV-OFF ");
+  else
+    DEBUG_PRINTF("RF/%d ", rfdiv);
+
+  if (result & (1 << C_EVG_CLKCTRL_CGLOCK))
+    DEBUG_PRINTF("CGLOCK ");
+
+  DEBUG_PRINTF("\n");
+}
+
+/**
+Display EVG status.
+@param pEg Pointer to MrfEgRegs structure
+*/
+void EvgDumpStatus(volatile struct MrfEgRegs *pEg)
+{
+  int result;
+
+  result = be32_to_cpu(pEg->Status);
+  DEBUG_PRINTF("Status %08x ", result);
+
+  result = be32_to_cpu(pEg->Control);
+  DEBUG_PRINTF("Control %08x: ", result);
+
+  result = be32_to_cpu(pEg->IrqFlag);
+
+  result = be32_to_cpu(pEg->IrqEnable);
+  DEBUG_PRINTF("IRQ Enable %08x: ", result);
+
+  result = be32_to_cpu(pEg->DataBufControl);
+  DEBUG_PRINTF("DataBufControl %08x\n", result);
 }

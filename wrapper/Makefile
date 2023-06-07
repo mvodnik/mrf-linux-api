@@ -10,10 +10,13 @@ APIOBJECTS := $(APIDIR)/egapi.o $(APIDIR)/erapi.o $(APIDIR)/fctapi.o \
 
 WRAPPERS := \
 EvgFWVersion \
+EvgDumpClockControl \
+EvgDumpStatus \
 EvgEnable \
 EvgSystemMasterEnable \
 EvgBeaconEnable \
 EvgRxEnable \
+EvgGetFracDiv \
 EvgGetViolation \
 EvgSendSWEvent \
 EvgSWEventEnable \

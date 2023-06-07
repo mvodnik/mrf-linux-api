@@ -193,11 +193,14 @@ struct MrfEgRegs {
 /* -- Timestamp Generator Control Register bit mappings */
 #define C_EVG_TSCTRL_LOAD        1
 #define C_EVG_TSCTRL_ENABLE      0
-/* -- Clock Control Register bit mapppings */
+/* -- Clock Control Register bit mappings */
+#define C_EVG_CLKCTRL_PLLL         31
+#define C_EVG_CLKCTRL_BWSEL        28
+#define C_EVG_CLKCTRL_RFSEL        24
 #define C_EVG_CLKCTRL_RFSELMASK    0x07000000
 #define C_EVG_CLKCTRL_MAX_RFSEL    7
-#define C_EVG_CLKCTRL_RFSEL        24
 #define C_EVG_CLKCTRL_EXTRF        24
+#define C_EVG_CLKCTRL_PHTOGG       23
 #define C_EVG_CLKCTRL_DIV_HIGH     21
 #define C_EVG_CLKCTRL_DIV_LOW      16
 #define C_EVG_CLKCTRL_RECDCM_RUN    15
@@ -398,3 +401,5 @@ int EvgTimestampEnable(volatile struct MrfEgRegs *pEg, int enable);
 int EvgGetTimestampEnable(volatile struct MrfEgRegs *pEg);
 int EvgTimestampLoad(volatile struct MrfEgRegs *pEg, int timestamp);
 int EvgTimestampGet(volatile struct MrfEgRegs *pEg);
+void EvgDumpClockControl(volatile struct MrfEgRegs *pEg);
+void EvgDumpStatus(volatile struct MrfEgRegs *pEg);
