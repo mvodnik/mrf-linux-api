@@ -2305,9 +2305,7 @@ void EvgDumpClockControl(volatile struct MrfEgRegs *pEg)
   if (result & (1 << C_EVG_CLKCTRL_PHTOGG))
     DEBUG_PRINTF("PHTOGG ");
 
-  DEBUG_PRINTF("\n");
-
-  uint8_t rfdiv = (result >> C_EVG_CLKCTRL_DIV_LOW) & 0x7 + 1;
+  uint8_t rfdiv = ((result >> C_EVG_CLKCTRL_DIV_LOW) & 0x7) + 1;
   if (rfdiv == 13)
     DEBUG_PRINTF("RFDIV-OFF ");
   else
@@ -2329,14 +2327,19 @@ void EvgDumpStatus(volatile struct MrfEgRegs *pEg)
 
   result = be32_to_cpu(pEg->Status);
   DEBUG_PRINTF("Status %08x ", result);
+  DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->Control);
   DEBUG_PRINTF("Control %08x: ", result);
+  DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->IrqFlag);
+  DEBUG_PRINTF("IRQ Flags %08x: ", result);
+  DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->IrqEnable);
   DEBUG_PRINTF("IRQ Enable %08x: ", result);
+  DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->DataBufControl);
   DEBUG_PRINTF("DataBufControl %08x\n", result);
