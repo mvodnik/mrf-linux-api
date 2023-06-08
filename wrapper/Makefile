@@ -10,6 +10,8 @@ APIOBJECTS := $(APIDIR)/egapi.o $(APIDIR)/erapi.o $(APIDIR)/fctapi.o \
 
 WRAPPERS := \
 EvgFWVersion \
+EvgClearIrqFlags \
+EvgIrqEnable \
 EvgDumpClockControl \
 EvgDumpStatus \
 EvgEnable \

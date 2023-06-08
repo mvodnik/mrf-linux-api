@@ -2330,15 +2330,15 @@ void EvgDumpStatus(volatile struct MrfEgRegs *pEg)
   DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->Control);
-  DEBUG_PRINTF("Control %08x: ", result);
+  DEBUG_PRINTF("Control %08x ", result);
   DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->IrqFlag);
-  DEBUG_PRINTF("IRQ Flags %08x: ", result);
+  DEBUG_PRINTF("IRQ Flags %08x ", result);
   DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->IrqEnable);
-  DEBUG_PRINTF("IRQ Enable %08x: ", result);
+  DEBUG_PRINTF("IRQ Enable %08x ", result);
   DEBUG_PRINTF("\n");
 
   result = be32_to_cpu(pEg->DataBufControl);
