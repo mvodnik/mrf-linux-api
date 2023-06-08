@@ -1,3 +1,3 @@
 WRAP_DIR=../wrapper
 VALID_EVRS="[c]"
-VALID_EVGS="[b]"
+VALID_EVGS="[a]"

@@ -2305,7 +2305,7 @@ void EvgDumpClockControl(volatile struct MrfEgRegs *pEg)
   if (result & (1 << C_EVG_CLKCTRL_PHTOGG))
     DEBUG_PRINTF("PHTOGG ");
 
-  uint8_t rfdiv = ((result >> C_EVG_CLKCTRL_DIV_LOW) & 0x7) + 1;
+  uint8_t rfdiv = ((result >> C_EVG_CLKCTRL_DIV_LOW) & 0x3f) + 1;
   if (rfdiv == 13)
     DEBUG_PRINTF("RFDIV-OFF ");
   else
