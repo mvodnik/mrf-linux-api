@@ -1345,13 +1345,15 @@ void EvgFPinDump(volatile struct MrfEgRegs *pEg)
   for (fp = 0; fp < EVG_MAX_FPIN_MAP; fp++)
     {
       int map = be32_to_cpu(pEg->FPInMap[fp]); 
-      DEBUG_PRINTF("FPIn%d Mapped to Trig %08x, DBus %02x, IRQ %d, seqtrig %d, seqmask %02x\n", fp,
+      DEBUG_PRINTF("FPIn%d Mapped to Trig %08x, DBus %02x, IRQ %d, seqtrig %d, seqena %d, seqmask %02x\n", fp,
 		   (map >> C_EVG_INMAP_TRIG_BASE)
 		   & ((1 << EVG_MAX_TRIGGERS) - 1),
 		   (map >> C_EVG_INMAP_DBUS_BASE)
 		   & ((1 << EVG_DBUS_BITS) - 1),
 		   (map >> C_EVG_INMAP_IRQ) & 1,
 		   (map >> C_EVG_INMAP_SEQTRIG_BASE)
+		   & ((1 << EVG_MAX_SEQRAMS) - 1),
+		   (map >> C_EVG_INMAP_SEQENA_BASE)
 		   & ((1 << EVG_MAX_SEQRAMS) - 1),
 		   (map >> C_EVG_INMAP_SEQMASK) & 0x00ff);
     }
