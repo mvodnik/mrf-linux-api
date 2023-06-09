@@ -1200,7 +1200,7 @@ Set up Front panel Input Mappings.
 @param seqtrig Number of sequence RAM trigger, -1 for no trigger 
 @param mask Sequence mask enable/disable field
 */
-int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int fpin, int trig, int dbus, int irq, int seqtrig, int mask)
+int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int fpin, int trig, int dbus, int irq, int seqtrig, int seqena, int mask)
 {
   int map = 0;
 
@@ -1216,6 +1216,9 @@ int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int fpin, int trig, int dbus, 
   if (seqtrig >= EVG_MAX_SEQRAMS)
     return -1;
 
+  if (seqena >= EVG_MAX_SEQRAMS)
+    return -1;
+
   if (trig >= 0)
     map |= (1 << (C_EVG_INMAP_TRIG_BASE + trig));
 
@@ -1227,6 +1230,9 @@ int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int fpin, int trig, int dbus, 
 
   if (seqtrig >= 0)
     map |= (1 << (C_EVG_INMAP_SEQTRIG_BASE + seqtrig));
+
+  if (seqena >= 0)
+    map |= (1 << (C_EVG_INMAP_SEQENA_BASE + seqena));
 
   if (mask >= 0)
     map |= ((mask & 0x00ff) << C_EVG_INMAP_SEQMASK);

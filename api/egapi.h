@@ -355,7 +355,7 @@ int EvgGetUnivinMapDBus(volatile struct MrfEgRegs *pEg, int univ);
 int EvgGetUnivinMapIrq(volatile struct MrfEgRegs *pEg, int univ);
 int EvgGetUnivinMapSeqtrig(volatile struct MrfEgRegs *pEg, int univ);
 void EvgUnivinDump(volatile struct MrfEgRegs *pEg);
-int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int univ, int trig, int dbus, int irq, int seqtrig, int mask);
+int EvgSetFPinMap(volatile struct MrfEgRegs *pEg, int univ, int trig, int dbus, int irq, int seqtrig, int seqena, int mask);
 int EvgGetFPinMapTrigger(volatile struct MrfEgRegs *pEg, int univ);
 int EvgGetFPinMapDBus(volatile struct MrfEgRegs *pEg, int univ);
 int EvgGetFPinMapIrq(volatile struct MrfEgRegs *pEg, int univ);
