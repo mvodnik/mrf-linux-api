@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   int              fdEg;
   int              mask;
 
-  if (argc != 4)
+  if (argc != 3)
   {
     printf("Usage: %s <evg> <mask>\n", argv[0]);
     return 1;

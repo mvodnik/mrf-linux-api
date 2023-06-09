@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
   int              fdEg;
   int              mask;
 
-  if (argc != 4)
+  if (argc < 2)
   {
-    printf("Usage: %s <evg> <mask>\n", argv[0]);
+    printf("Usage: %s <evg> [<mask>]\n", argv[0]);
     return 1;
   }
 
@@ -27,8 +27,9 @@ int main(int argc, char *argv[])
     return errno;
   }
 
-  mask = atoi(argv[2]);
-  EvgClearIrqFlags(pEg, mask);
+  if (argc == 3) mask = atoi(argv[2]);
+  else mask = 0xFFFFFFFF;
+  int result = EvgClearIrqFlags(pEg, mask);
   
   EvgClose(fdEg);
 
