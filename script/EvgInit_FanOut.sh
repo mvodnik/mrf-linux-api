@@ -13,7 +13,10 @@ if [[ ! $EVG =~ \/dev\/eg${VALID_EVGS}3 ]]; then
 	exit 1
 fi
 
-$WRAP_DIR/EvgSetRFInput $EVG 4 12
+$WRAP_DIR/EvgEnable $EVG 0 > dev/null
+
+# ARG[2]: 0=Internal 4=Upstream
+$WRAP_DIR/EvgSetRFInput $EVG 0 12
 echo "Clocking mode set to Fan-Out"
 
 FRACDIV=$($WRAP_DIR/EvgSetFracDiv $EVG 11452781)

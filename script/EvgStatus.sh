@@ -41,7 +41,21 @@ echo "RAM 0"
 $WRAP_DIR/EvgSeqRamStatus $EVG 0
 $WRAP_DIR/EvgSeqRamDump $EVG 0
 
+echo "Repetitions: $($WRAP_DIR/EvgSeqRamGetRepeat $EVG 0)"
+echo "Start Count: $($WRAP_DIR/EvgSeqRamGetStartCnt $EVG 0)"
+echo "End Count:   $($WRAP_DIR/EvgSeqRamGetEndCnt $EVG 0)"
+
 echo ""
 echo "RAM 1"
 $WRAP_DIR/EvgSeqRamStatus $EVG 1
 $WRAP_DIR/EvgSeqRamDump $EVG 1
+
+echo "Repetitions: $($WRAP_DIR/EvgSeqRamGetRepeat $EVG 1)"
+echo "Start Count: $($WRAP_DIR/EvgSeqRamGetStartCnt $EVG 1)"
+echo "End Count:   $($WRAP_DIR/EvgSeqRamGetEndCnt $EVG 1)"
+
+echo ""
+echo "============================================================================================"
+echo "Input Mapping:"
+echo "============================================================================================"
+$WRAP_DIR/EvgFPinDump $EVG | head -n 1
