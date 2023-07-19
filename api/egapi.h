@@ -115,8 +115,8 @@ struct MrfEgRegs {
   u32  EventTrigger[EVG_MAX_TRIGGERS];      /* 0100-013F: Event Trigger Registers */
   u32  SeqRamStartCnt[EVG_MAX_SEQRAMS];     /* 0140-014F: Sequence Start Counters */
   u32  SeqRamEndCnt[EVG_MAX_SEQRAMS];       /* 0150-015F: Sequence End Counters */
-  u32  SeqRamRepeat[EVG_MAX_SEQRAMS];       /* 0160-016F: Sequence repetition settings */
-  u32  Resv0x0140to0x017F[(0x180-0x170)/4]; /* 0170-017F: Reserved */
+  u32  SeqRamRepeatLow[EVG_MAX_SEQRAMS];    /* 0160-016F: Sequence repetition settings (LSB) */
+  u32  SeqRamRepeatHigh[EVG_MAX_SEQRAMS];   /* 0170-017F: Sequence repetition settings (MSB) */
   struct MXCStruct MXC[EVG_MAX_MXCS];       /* 0180-01FF: Multiplexed Counter Prescalers */
   u32  Resv0x01C0to0x03FC[(0x400-0x200)/4]; /* 0200-03FF: Reserved */
   u16  FPOutMap[EVG_MAX_FPOUT_MAP];         /* 0400-041F: Front panel output mapping */
@@ -344,7 +344,9 @@ int EvgGetSeqRamEvent(volatile struct MrfEgRegs *pEg, int ram, int pos);
 void EvgSeqRamDump(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSeqRamControl(volatile struct MrfEgRegs *pEg, int ram, int enable, int single, int recycle, int reset, int trigsel, int mask);
 int EvgSeqRamSetRepeat(volatile struct MrfEgRegs *pEg, int ram, unsigned int count);
+int EvgSeqRamSetRepeatHigh(volatile struct MrfEgRegs *pEg, int ram, unsigned int count);
 unsigned int EvgSeqRamGetRepeat(volatile struct MrfEgRegs *pEg, int ram);
+unsigned int EvgSeqRamGetRepeatHigh(volatile struct MrfEgRegs *pEg, int ram);
 int EvgSeqRamSWTrig(volatile struct MrfEgRegs *pEg, int ram);
 void EvgSeqRamStatus(volatile struct MrfEgRegs *pEg, int ram);
 unsigned int EvgSeqRamGetStartCnt(volatile struct MrfEgRegs *pEg, int ram);
